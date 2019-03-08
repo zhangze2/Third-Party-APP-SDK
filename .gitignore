@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+.idea/workspace.xml
+.idea/modules.xml
+.idea/Third-Party-APP-SDK.iml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/watcherTasks.xml
+.gitignore
