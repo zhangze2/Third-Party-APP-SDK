@@ -4,7 +4,7 @@ const fs      = require('fs'),
       path    = require('path'),
       utility = require('../utility');
 
-
+//新建文本和图片文件
 let tempFile = `../${String(Date.now())}.md`;
 let url      = path.join(__dirname, tempFile);
 fs.writeFileSync(url, String(Date.now()), 'utf-8');
@@ -26,7 +26,7 @@ let imageRid = null;
 
 /**
  * 签名文本文件
- */
+
 describe('sign file', () => {
     it('should return a 200 response', function(done) {
         const content = fs.readFileSync(url, 'utf-8');
@@ -56,7 +56,7 @@ describe('sign file', () => {
 
 /**
  * 签名图片文件
- */
+
 describe('sign image', () => {
     it('should return a 200 response', function(done) {
         const content = fs.readFileSync(url2);
@@ -68,9 +68,9 @@ describe('sign image', () => {
         ).field(
             'address',     user.address
         ).field(
-            'title',       'testing title'
+            'title',       '蓝图-图片1'
         ).field(
-            'source',      'Google'
+            'source',      '蓝图'
         ).field(
             'originUrl',   'https://www.google.com'
         ).attach(
@@ -84,11 +84,11 @@ describe('sign image', () => {
         this.timeout(1000 * 200);
     });
 });
-
+ */
 
 /**
  * 签名图文混排文件
- */
+ 
 describe('sign file contains prs image', () => {
     it('should return a 200 response', function(done) {
         let tempFile3 = `../${String(Date.now())}.md`;
@@ -120,10 +120,10 @@ describe('sign file contains prs image', () => {
         this.timeout(1000 * 200);
     });
 });
-
+*/
 /**
  * 获取签名文件的基本信息
- */
+
 describe('get file by rId', () => {
     it('should return a 200 response', (done) => {
         let rIds = [imageRid];
@@ -140,10 +140,10 @@ describe('get file by rId', () => {
         });
     });
 });
-
+ */
 /**
  * 获取签名文件的基本信息
- */
+ 
 describe('get signed file', () => {
     it('should return a 200 response', (done) => {
         global.api.get(
@@ -152,7 +152,7 @@ describe('get signed file', () => {
         .expect(200, done);
     });
 });
-
+*/
 after(() => {
     fs.unlinkSync(url);
 });

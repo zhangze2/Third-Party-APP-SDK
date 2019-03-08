@@ -4,7 +4,7 @@ const utility  = require('../utility');
 
 /**
  * 获取 keyostore
- */
+
 describe('get keystore', function(){
     it('should return a 200 response', function(done) {
         global.api.post(
@@ -17,7 +17,11 @@ describe('get keystore', function(){
         .end(function(err, res){
             res.status.should.equal(200);
             res.body.data.length.should.equal(1);
+            console.log("%s",res.text);
+            //print(res);
             done();
         });
     });
 });
+ */
+

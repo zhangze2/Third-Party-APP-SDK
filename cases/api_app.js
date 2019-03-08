@@ -1,3 +1,4 @@
+// 严格模式
 'use strict';
 
 const utility  = require('../utility');
@@ -7,18 +8,19 @@ let keyPair    = utility.createKeyPair({dump: true});
 
 /**
  * 创建第三方 APP
- */
+*/
+ 
 describe('create app', () => {
     it('should return a 200', (done) => {
         const payload = {
-            name        : 'Test APP ' + new Date(),
-            description : 'This is a testing app.',
-            url         : 'http://xxxx.com',
-            logo        : 'http://xxxx.com/logo.png',
+            name: 'Lantu APP ' + new Date(),
+            description: 'This is a test app.',
+            url: 'http://xxxx.com',
+            logo: 'http://xxxx.com/logo.png',
         };
         global.api.post(
             '/api/apps'
-        ).send({payload: payload}).set(
+        ).send({ payload: payload }).set(
             utility.getAuthHeader('/apps', payload, developer.keystore, developer.password)
         ).end((err, res) => {
             res.status.should.equal(200);
@@ -27,10 +29,11 @@ describe('create app', () => {
         });
     });
 });
-
 /**
  * 获取 APP 基本信息
  */
+             
+
 describe('get app information', () => {
     it('should return a 200', (done) => {
         global.api.get(
@@ -39,18 +42,24 @@ describe('get app information', () => {
             utility.getAuthHeader('/apps/' + appAddress, undefined, developer.keystore, developer.password)
         ).set(
             'Accept', 'application/json'
-        ).expect(200, done);
+        ).expect(200, done)
+        .end(function(err, res){
+            console.log("App information:");
+            res.status.should.equal(200);
+            res.body.data.length.should.equal(1);
+            console.log("%s",res.text);
+            done();
+        });
     });
 });
-
 /**
  * 更新 APP 基本信息
- */
+ 
 describe('update app', () => {
     it('should return a 200', (done) => {
         const payload = {
-            name        : 'Test APP ' + new Date(),
-            description : 'This is a testing app.',
+            name        : 'New Lantu APP ' + new Date(),
+            description : 'This is a picture app.',
             url         : 'http://xxxx.com',
             logo        : 'http://xxxx.com/logo.png',
         };
@@ -62,10 +71,10 @@ describe('update app', () => {
         ).expect(200, done);
     });
 });
-
+*/
 /**
  * 删除 APP
- */
+ 
 describe('delete app', () => {
     it('should return a 200', (done) => {
         const payload = {};
@@ -77,10 +86,11 @@ describe('delete app', () => {
         ).expect(200, done);
     });
 });
+*/
 
 /**
  * 创建新密钥，并授权 app，可通过此密钥签名文件，发布信息
- */
+
 describe('auth app', () => {
     it('should return a 200', (done) => {
         const appAdd  = 'c609224f9590e60fae1723ad4d612c2db1a41595';
@@ -102,10 +112,10 @@ describe('auth app', () => {
         ).send(data).expect(200, done);
     });
 });
-
+*/
 /**
  * 取消对 app 的授权，将不能再通过此密钥签名新文件
- */
+
 describe('deauth app', () => {
     it('should return a 200', (done) => {
         const appAdd  = 'c609224f9590e60fae1723ad4d612c2db1a41595';
@@ -127,3 +137,4 @@ describe('deauth app', () => {
         ).send(data).expect(200, done);
     });
 });
+ */
